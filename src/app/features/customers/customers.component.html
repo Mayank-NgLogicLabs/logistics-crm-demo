@@ -1,0 +1,39 @@
+<section class="page-shell customers-page">
+  <div class="section-head glass-card">
+    <div>
+      <p class="eyebrow">Accounts</p>
+      <h2>Customer portfolio</h2>
+    </div>
+    <input
+      type="search"
+      [ngModel]="search()"
+      (ngModelChange)="search.set($event)"
+      placeholder="Search customer or segment"
+    />
+  </div>
+
+  <div class="customer-grid">
+    @for (customer of filteredCustomers(); track customer.id) {
+      <article class="customer-card glass-card">
+        <div class="card-head">
+          <div>
+            <h3>{{ customer.name }}</h3>
+            <p>{{ customer.segment }} · {{ customer.region }}</p>
+          </div>
+          <span>{{ customer.id }}</span>
+        </div>
+
+        <div class="stats">
+          <div>
+            <span>Active loads</span>
+            <strong>{{ customer.activeLoads }}</strong>
+          </div>
+          <div>
+            <span>Health score</span>
+            <strong>{{ customer.healthScore }}</strong>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>

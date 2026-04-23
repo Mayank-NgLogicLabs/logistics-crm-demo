@@ -1,0 +1,57 @@
+<section class="shell">
+  <aside class="sidebar glass-card" [class.collapsed]="sidebarCollapsed()">
+    <div class="brand">
+      <div class="brand-mark">FF</div>
+      @if (!sidebarCollapsed()) {
+        <div>
+          <strong>FreightFlow</strong>
+          <p>Logistics CRM</p>
+        </div>
+      }
+    </div>
+
+    <nav class="nav-links">
+      @for (item of navItems; track item.path) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          class="nav-link"
+          [attr.aria-label]="item.label"
+        >
+          <span>{{ item.icon }}</span>
+          @if (!sidebarCollapsed()) {
+            <span>{{ item.label }}</span>
+          }
+        </a>
+      }
+    </nav>
+
+    <button class="collapse-btn" type="button" (click)="toggleSidebar()">
+      {{ sidebarCollapsed() ? 'Expand' : 'Compact' }}
+    </button>
+  </aside>
+
+  <div class="workspace">
+    <header class="topbar glass-card">
+      <div>
+        <p class="eyebrow">Control tower</p>
+        <h1>Operational CRM</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="user-chip">
+          <span class="avatar">{{ userBadge() }}</span>
+          <div>
+            <strong>{{ session()?.name }}</strong>
+            <p>{{ session()?.role }}</p>
+          </div>
+        </div>
+        <button class="logout-btn" type="button" (click)="logout()">Logout</button>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <router-outlet />
+    </main>
+  </div>
+</section>

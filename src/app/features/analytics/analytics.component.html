@@ -1,0 +1,41 @@
+<section class="page-shell analytics-page">
+  <div class="section-head glass-card">
+    <div>
+      <p class="eyebrow">Performance</p>
+      <h2>Revenue and service analytics</h2>
+    </div>
+    <div class="range-switch">
+      @for (range of ranges; track range) {
+        <button type="button" [class.active]="activeRange() === range" (click)="activeRange.set(range)">
+          {{ range }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="analytics-grid">
+    <article class="chart-card glass-card">
+      <div class="chart-head">
+        <h3>Service reliability trend</h3>
+        <span>{{ activeRange() }}</span>
+      </div>
+      <div class="bars">
+        @for (value of charts(); track $index) {
+          <div class="bar-wrap">
+            <div class="bar" [style.height.%]="value"></div>
+            <span>W{{ $index + 1 }}</span>
+          </div>
+        }
+      </div>
+    </article>
+
+    <article class="insight-card glass-card">
+      <h3>Insights</h3>
+      <ul>
+        <li>High-priority lanes improved reliability after carrier backup approvals.</li>
+        <li>South region demand is rising faster than dock allocation capacity.</li>
+        <li>Enterprise accounts remain strong, but escalations are clustering on time-sensitive pharma loads.</li>
+      </ul>
+    </article>
+  </div>
+</section>

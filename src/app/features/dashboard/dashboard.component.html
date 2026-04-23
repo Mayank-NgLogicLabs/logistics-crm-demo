@@ -1,0 +1,77 @@
+<section class="dashboard page-shell">
+  <div class="hero glass-card">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <h2>Logistics command dashboard</h2>
+      <p>{{ headline() }}</p>
+    </div>
+
+    <div class="mode-switch">
+      @for (mode of focusModes; track mode) {
+        <button type="button" [class.active]="activeMode() === mode" (click)="activeMode.set(mode)">
+          {{ mode }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="metric-grid">
+    @for (metric of metrics(); track metric.label) {
+      <article class="metric glass-card">
+        <span>{{ metric.label }}</span>
+        <strong>{{ metric.value }}</strong>
+        <p [class.negative]="!metric.positive">{{ metric.delta }} vs last week</p>
+      </article>
+    }
+  </div>
+
+  <div class="content-grid">
+    <article class="panel glass-card">
+      <div class="panel-head">
+        <h3>Priority shipments</h3>
+        <span>{{ priorityShipments().length }} live</span>
+      </div>
+      @for (shipment of priorityShipments(); track shipment.id) {
+        <div class="row-item">
+          <div>
+            <strong>{{ shipment.id }}</strong>
+            <p>{{ shipment.customer }} · {{ shipment.route }}</p>
+          </div>
+          <div class="row-meta">
+            <span class="pill">{{ shipment.status }}</span>
+            <strong>{{ shipment.eta }}</strong>
+          </div>
+        </div>
+      }
+    </article>
+
+    <article class="panel glass-card">
+      <div class="panel-head">
+        <h3>Critical alerts</h3>
+        <span>{{ alerts().length }} open</span>
+      </div>
+      @for (alert of alerts(); track alert.id) {
+        <div class="alert-card" [class.high]="alert.severity === 'High'">
+          <strong>{{ alert.title }}</strong>
+          <p>{{ alert.detail }}</p>
+        </div>
+      }
+    </article>
+
+    <article class="panel glass-card">
+      <div class="panel-head">
+        <h3>Operations queue</h3>
+        <span>Next actions</span>
+      </div>
+      @for (workflow of workflows(); track workflow.title) {
+        <div class="row-item">
+          <div>
+            <strong>{{ workflow.title }}</strong>
+            <p>Owner: {{ workflow.owner }}</p>
+          </div>
+          <strong>{{ workflow.dueIn }}</strong>
+        </div>
+      }
+    </article>
+  </div>
+</section>

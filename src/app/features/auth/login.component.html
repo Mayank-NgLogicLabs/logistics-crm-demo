@@ -1,0 +1,65 @@
+<section class="login-page">
+  <div class="login-copy">
+    <p class="eyebrow">FreightFlow CRM</p>
+    <h1>Lead the network from one control tower.</h1>
+    <p class="intro">
+      Monitor shipments, customer health, escalations, and operational throughput in a
+      single Angular 18 workspace built for logistics teams.
+    </p>
+
+    <div class="highlights">
+      <article class="highlight glass-card">
+        <strong>Live exception handling</strong>
+        <p>Track delayed loads, SLA risk, and carrier issues before they become revenue leaks.</p>
+      </article>
+      <article class="highlight glass-card">
+        <strong>Customer-centric operations</strong>
+        <p>Keep customer accounts, lane health, and dispatch performance visible to every team.</p>
+      </article>
+    </div>
+  </div>
+
+  <form class="login-card glass-card" [formGroup]="form" (ngSubmit)="login()">
+    <div class="card-top">
+      <div>
+        <p class="eyebrow">Secure Sign In</p>
+        <h2>Welcome back</h2>
+      </div>
+      <span class="badge">Angular 18</span>
+    </div>
+
+    <label>
+      <span>Email</span>
+      <input type="email" formControlName="email" placeholder="ops@freightflow.io" />
+    </label>
+
+    <label>
+      <span>Password</span>
+      <div class="password-field">
+        <input
+          [type]="revealPassword() ? 'text' : 'password'"
+          formControlName="password"
+          placeholder="Enter password"
+        />
+        <button type="button" (click)="togglePassword()">
+          {{ revealPassword() ? 'Hide' : 'Show' }}
+        </button>
+      </div>
+    </label>
+
+    @if (submitted() && form.invalid) {
+      <p class="error">Use a valid email and a password with at least 6 characters.</p>
+    }
+
+    <div class="quick-profiles">
+      <span>Quick login</span>
+      <div>
+        @for (profile of quickProfiles; track profile.email) {
+          <button type="button" (click)="applyProfile(profile.email)">{{ profile.label }}</button>
+        }
+      </div>
+    </div>
+
+    <button class="submit-btn" type="submit">Access CRM</button>
+  </form>
+</section>
