@@ -5,7 +5,6 @@
 }
 
 .section-head,
-.tab-group,
 .progress-head {
   display: flex;
   justify-content: space-between;
@@ -13,8 +12,18 @@
   align-items: center;
 }
 
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+}
+
 .tab-group {
+  display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .tab-group button {
@@ -22,6 +31,9 @@
   border-radius: 999px;
   padding: 0.65rem 0.95rem;
   background: rgba(24, 51, 41, 0.08);
+  min-width: 8.5rem;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .tab-group button.active {
@@ -31,10 +43,14 @@
 
 .board-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .board {
+  display: flex;
+  flex-direction: column;
   padding: 1.2rem;
+  min-height: 17rem;
 }
 
 .progress-card {
@@ -42,6 +58,7 @@
   padding: 1rem;
   border-radius: 18px;
   background: rgba(24, 51, 41, 0.06);
+  min-height: 8.75rem;
 }
 
 .progress-bar {
@@ -66,8 +83,12 @@
 
 @media (max-width: 900px) {
   .section-head {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     align-items: flex-start;
+  }
+
+  .tab-group {
+    justify-content: flex-start;
   }
 
   .board-grid {
