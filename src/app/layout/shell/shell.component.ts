@@ -8,25 +8,8 @@ import { BottomNavComponent } from '../bottom-nav/bottom-nav.component';
 @Component({
   selector: 'app-shell',
   standalone: true,
-  imports: [RouterOutlet, SidebarComponent, TopbarComponent, BottomNavComponent],
-  template: `
-    <div class="shell" [class.sidebar-collapsed]="sidebarCollapsed()">
-      <app-sidebar
-        [collapsed]="sidebarCollapsed()"
-        (toggleCollapse)="sidebarCollapsed.set(!sidebarCollapsed())" />
-
-      <div class="shell-main">
-        <app-topbar
-          [sidebarCollapsed]="sidebarCollapsed()"
-          (toggleSidebar)="sidebarCollapsed.set(!sidebarCollapsed())" />
-        <main class="shell-content">
-          <router-outlet />
-        </main>
-      </div>
-
-      <app-bottom-nav class="hide-desktop" />
-    </div>
-  `,
+  imports: [RouterOutlet, SidebarComponent, TopbarComponent],
+  templateUrl: './shell.component.html',
   styleUrl: './shell.component.scss'
 })
 export class ShellComponent implements OnInit {

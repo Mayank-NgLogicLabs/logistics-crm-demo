@@ -205,5 +205,18 @@
 }
 
 @media (max-width: 639px) {
-  .sidebar { display: none; }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    z-index: 1000;
+    width: var(--sidebar-w) !important;
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0,0,0,0.5);
+
+    &.collapsed {
+      transform: translateX(-100%);
+    }
+  }
 }

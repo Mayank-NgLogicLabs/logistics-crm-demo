@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-status-badge',
   standalone: true,
-  template: `<span class="badge status-{{ status }}">{{ label }}</span>`,
+  templateUrl: './status-badge.component.html',
   styles: [`
     :host { display: inline-flex; }
     .badge {

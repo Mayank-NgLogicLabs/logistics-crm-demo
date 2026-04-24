@@ -8,7 +8,7 @@ import { AuthService } from './core/services/auth.service';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
-  template: `<router-outlet />`,
+  templateUrl: './app.component.html',
   styles: [`:host { display: block; min-height: 100vh; }`]
 })
 export class AppComponent implements OnInit {

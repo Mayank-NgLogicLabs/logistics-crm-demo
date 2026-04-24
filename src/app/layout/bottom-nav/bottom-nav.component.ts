@@ -15,19 +15,7 @@ const TABS: NavTab[] = [
   selector: 'app-bottom-nav',
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  template: `
-    <nav class="bottom-nav" aria-label="Mobile navigation">
-      @for (tab of tabs; track tab.path) {
-        <a class="tab-item"
-           [routerLink]="tab.path"
-           routerLinkActive="active"
-           [attr.aria-label]="tab.label">
-          <span class="tab-icon" [innerHTML]="getIcon(tab.icon)"></span>
-          <span class="tab-label">{{ tab.label }}</span>
-        </a>
-      }
-    </nav>
-  `,
+  templateUrl: './bottom-nav.component.html',
   styleUrl: './bottom-nav.component.scss'
 })
 export class BottomNavComponent {

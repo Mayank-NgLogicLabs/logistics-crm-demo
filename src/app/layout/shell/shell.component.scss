@@ -1,6 +1,6 @@
 .shell {
   display: flex;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background: var(--bg);
 }
@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  min-height: 0;
   transition: margin-left 0.3s ease;
 }
 
@@ -27,12 +28,23 @@
   }
 }
 
+.sidebar-backdrop {
+  display: none;
+}
+
 @media (max-width: 639px) {
   .shell {
     flex-direction: column;
   }
-
-  .shell-main {
-    padding-bottom: var(--bottom-nav-h);
+  
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 31, 25, 0.45);
+    backdrop-filter: blur(4px);
+    z-index: 900;
+    animation: fadeIn 0.2s ease;
   }
 }
+
