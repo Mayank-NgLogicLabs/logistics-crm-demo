@@ -1,11 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AuthActions } from './store/auth/auth.actions';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
-  template: '<router-outlet />',
-  styleUrl: './app.component.scss'
+  template: `<router-outlet />`,
+  styles: [`:host { display: block; min-height: 100vh; }`]
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  private store = inject(Store);
+  private authService = inject(AuthService);
+
+  ngOnInit(): void {
+    const user = this.authService.getStoredUser();
+    if (user) {
+      this.store.dispatch(AuthActions.restoreSession({ user }));
+    }
+  }
+}

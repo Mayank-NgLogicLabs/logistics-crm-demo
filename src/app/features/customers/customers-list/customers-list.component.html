@@ -1,0 +1,130 @@
+<div class="page-header">
+  <div>
+    <h1 class="heading-lg">Customers</h1>
+    <p class="text-muted text-sm">{{ customers().length }} customers</p>
+  </div>
+  <button class="btn btn-primary" (click)="showForm.set(true)" id="add-customer-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    Add Customer
+  </button>
+</div>
+
+<!-- Search -->
+<div class="filter-row">
+  <div class="search-box">
+    <svg class="s-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="search" class="input input-search" placeholder="Search customers…" [value]="searchQuery()" (input)="onSearch($any($event.target).value)" id="customers-search" aria-label="Search customers">
+  </div>
+</div>
+
+<!-- Customer grid -->
+<div class="grid grid-auto-fill cust-grid">
+  @if (isLoading()) {
+    @for (_ of [1,2,3,4,5,6]; track $index) {
+      <div class="skeleton cust-skeleton"></div>
+    }
+  } @else if (customers().length === 0) {
+    <p class="text-muted">No customers found.</p>
+  } @else {
+    @for (c of customers(); track c.id) {
+      <a [routerLink]="['/customers', c.id]" class="cust-card" [id]="'cust-' + c.id">
+        <div class="cust-top">
+          <div class="cust-avatar">{{ getInitials(c.name) }}</div>
+          <app-status-badge [status]="c.status" />
+        </div>
+        <div class="cust-name">{{ c.name }}</div>
+        <div class="cust-company text-sm text-muted">{{ c.company }}</div>
+        <div class="cust-meta">
+          <span class="text-xs">{{ c.city }}, {{ c.country }}</span>
+          <span class="text-xs text-muted">{{ c.industry }}</span>
+        </div>
+        <div class="divider" style="margin:0.875rem 0"></div>
+        <div class="cust-stats">
+          <div class="cust-stat">
+            <span class="cust-stat-val">{{ c.totalShipments }}</span>
+            <span class="cust-stat-lbl">Shipments</span>
+          </div>
+          <div class="cust-stat">
+            <span class="cust-stat-val">{{ c.activeShipments }}</span>
+            <span class="cust-stat-lbl">Active</span>
+          </div>
+          <div class="cust-stat">
+            <span class="cust-stat-val">${{ formatRevenue(c.totalRevenue) }}</span>
+            <span class="cust-stat-lbl">Revenue</span>
+          </div>
+        </div>
+      </a>
+    }
+  }
+</div>
+
+<!-- Add Customer Drawer -->
+@if (showForm()) {
+  <div class="overlay-backdrop" (click)="showForm.set(false)"></div>
+  <div class="drawer" role="dialog" aria-modal="true" aria-label="Add Customer">
+    <div class="drawer-header">
+      <div>
+        <h2 class="heading-md">Add New Customer</h2>
+        <p class="text-sm text-muted">Fill in the customer details below</p>
+      </div>
+      <button class="btn btn-ghost btn-icon" (click)="showForm.set(false)" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <form [formGroup]="customerForm" (ngSubmit)="submitCustomer()" id="customer-form">
+        <div class="drawer-row">
+          <div class="input-wrap">
+            <label for="c-name">Full Name</label>
+            <input id="c-name" class="input" formControlName="name" placeholder="John Smith">
+            @if (customerForm.controls.name.invalid && customerForm.controls.name.touched) {
+              <span class="field-error">Name is required</span>
+            }
+          </div>
+          <div class="input-wrap">
+            <label for="c-company">Company</label>
+            <input id="c-company" class="input" formControlName="company" placeholder="Acme Corp.">
+            @if (customerForm.controls.company.invalid && customerForm.controls.company.touched) {
+              <span class="field-error">Required</span>
+            }
+          </div>
+        </div>
+        <div class="drawer-row">
+          <div class="input-wrap">
+            <label for="c-email">Email</label>
+            <input id="c-email" class="input" type="email" formControlName="email" placeholder="john@acme.com">
+            @if (customerForm.controls.email.invalid && customerForm.controls.email.touched) {
+              <span class="field-error">Valid email required</span>
+            }
+          </div>
+          <div class="input-wrap">
+            <label for="c-phone">Phone</label>
+            <input id="c-phone" class="input" type="tel" formControlName="phone" placeholder="+91 98765 43210">
+          </div>
+        </div>
+        <div class="drawer-row">
+          <div class="input-wrap">
+            <label for="c-city">City</label>
+            <input id="c-city" class="input" formControlName="city" placeholder="Mumbai">
+          </div>
+          <div class="input-wrap">
+            <label for="c-country">Country</label>
+            <input id="c-country" class="input" formControlName="country" placeholder="India">
+          </div>
+        </div>
+        <div class="input-wrap">
+          <label for="c-industry">Industry</label>
+          <input id="c-industry" class="input" formControlName="industry" placeholder="Logistics, Technology, Trading…">
+        </div>
+        <div class="input-wrap">
+          <label for="c-address">Address (optional)</label>
+          <input id="c-address" class="input" formControlName="address" placeholder="123 Main St, Mumbai">
+        </div>
+        <div class="drawer-footer">
+          <button type="button" class="btn btn-ghost" (click)="showForm.set(false)">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="customer-submit-btn">Add Customer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}

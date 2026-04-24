@@ -1,0 +1,141 @@
+.topbar {
+  height: var(--topbar-h);
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.menu-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  transition: background 0.2s;
+  flex-shrink: 0;
+
+  &:hover { background: var(--surface-alt); }
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 420px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.search-input {
+  min-height: 40px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background: var(--surface-alt);
+  border-color: transparent;
+  font-size: 0.875rem;
+
+  &:focus { background: var(--surface-strong); border-color: var(--accent); }
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  transition: all 0.2s;
+
+  &:hover { background: var(--surface-alt); color: var(--text); }
+}
+
+.notif-btn { position: relative; }
+
+.notif-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 2px solid var(--surface-strong);
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover { background: var(--surface-alt); }
+}
+
+.topbar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.topbar-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.mobile-search {
+  padding: 0.75rem 1.25rem;
+  background: var(--surface-strong);
+  border-bottom: 1px solid var(--line);
+
+  .search-wrap { max-width: 100%; }
+  .search-icon { left: 1rem; }
+}
+
+@media (max-width: 639px) {
+  .topbar { padding: 0 1rem; }
+}

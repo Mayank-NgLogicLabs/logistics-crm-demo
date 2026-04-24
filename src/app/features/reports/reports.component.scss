@@ -1,0 +1,106 @@
+.date-filter {
+  margin-bottom: 1.25rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.date-filter-inner {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  .input-wrap { 
+    min-width: 180px; 
+    margin-bottom: 0;
+  }
+
+  .btn {
+    min-height: 48px; /* Match input field exactly */
+  }
+}
+
+.stats-overview { margin-bottom: 1.25rem; }
+
+.summary-card { text-align: center; }
+.s-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.5rem; }
+.s-value { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; }
+.s-sub { margin-top: 0.25rem; }
+
+.report-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+
+  @media (max-width: 767px) { grid-template-columns: 1fr; }
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--line);
+  &:last-child { border-bottom: none; }
+}
+
+.breakdown-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 130px;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.breakdown-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+.breakdown-bar-wrap {
+  flex: 1;
+  height: 8px;
+  background: var(--surface-alt);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.breakdown-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 2px;
+}
+
+.breakdown-val { font-size: 0.8125rem; font-weight: 600; width: 80px; text-align: right; }
+
+.top-customers { display: flex; flex-direction: column; gap: 0.625rem; }
+
+.tc-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--radius-md);
+  transition: background 0.15s;
+  &:hover { background: var(--surface-alt); }
+}
+
+.tc-rank {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tc-info { flex: 1; }
+.tc-name { font-size: 0.9rem; font-weight: 600; }
+
+.section-header { display: flex; align-items: center; justify-content: space-between; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }

@@ -1,0 +1,120 @@
+.header-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+.view-toggle {
+  display: flex;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.toggle-btn {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-strong);
+  color: var(--muted);
+  transition: all 0.2s;
+
+  &.active { background: var(--brand); color: #fff; }
+  &:hover:not(.active) { background: var(--surface-alt); }
+}
+
+.filters-row {
+  margin-bottom: 1rem;
+}
+
+.search-box {
+  position: relative;
+  max-width: 440px;
+  .s-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+  .input { padding-left: 2.75rem; background: var(--surface); }
+}
+
+.status-tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.status-tab {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+  min-height: 44px;
+  transition: all 0.2s;
+
+  &.active {
+    background: var(--brand);
+    color: #fff;
+    border-color: var(--brand);
+  }
+
+  &:hover:not(.active) { background: var(--surface-alt); color: var(--text); }
+}
+
+.table-card { padding: 0; overflow: hidden; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.tracking-link {
+  font-weight: 600;
+  color: var(--info);
+  font-size: 0.8125rem;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  &:hover { text-decoration: underline; }
+}
+
+.route-cell { color: var(--muted); font-size: 0.8125rem; }
+
+.empty-row {
+  text-align: center;
+  padding: 3rem !important;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.page-btns { display: flex; gap: 0.5rem; }
+
+/* Card view */
+.shipment-cards { margin-top: 0.25rem; }
+
+.shipment-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+  color: var(--text);
+
+  &:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+}
+
+.sc-header { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.sc-tracking { font-family: 'SF Mono', 'Consolas', monospace; font-size: 0.8125rem; font-weight: 700; color: var(--info); }
+.sc-customer { font-weight: 600; font-size: 0.9375rem; }
+.sc-route { display: flex; align-items: center; gap: 0.375rem; }
+.sc-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 0.25rem; }

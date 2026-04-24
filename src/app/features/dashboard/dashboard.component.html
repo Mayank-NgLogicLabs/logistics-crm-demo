@@ -1,0 +1,154 @@
+<div class="page-header">
+  <div>
+    <h1 class="heading-lg">Dashboard</h1>
+    <p class="text-muted text-sm">Welcome back — here's what's happening today.</p>
+  </div>
+  <a routerLink="/shipments" class="btn btn-primary" id="new-shipment-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    New Shipment
+  </a>
+</div>
+
+<!-- KPI Cards -->
+<div class="grid grid-4 kpi-grid">
+  @if (isLoading()) {
+    @for (_ of [1,2,3,4]; track $index) {
+      <div class="skeleton kpi-skeleton"></div>
+    }
+  } @else {
+    @for (m of metrics(); track m.label) {
+      <app-metric-card [data]="m" />
+    }
+  }
+</div>
+
+<!-- Chart + Alerts row -->
+<div class="mid-row">
+  <!-- Shipment Trend Chart -->
+  <div class="card chart-card">
+    <div class="chart-header">
+      <div>
+        <h2 class="heading-sm">Shipment Trend</h2>
+        <p class="text-xs text-muted">Last 7 days</p>
+      </div>
+    </div>
+    <div class="bar-chart" aria-label="Shipment trend bar chart">
+      @for (bar of chartData(); track bar.day) {
+        <div class="bar-col">
+          <div class="bar-wrap">
+            <div class="bar-fill" [style.height.%]="bar.pct" [title]="bar.value + ' shipments'"></div>
+          </div>
+          <span class="bar-label">{{ bar.day }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Alerts panel -->
+  <div class="card alerts-card">
+    <h2 class="heading-sm" style="margin-bottom: 1rem;">
+      <span class="alert-badge-count">{{ alerts().length }}</span>
+      Active Alerts
+    </h2>
+    @if (alerts().length === 0) {
+      <p class="text-sm text-muted">No active alerts. All shipments on schedule.</p>
+    } @else {
+      @for (a of alerts(); track a.id) {
+        <div class="alert-item" [class.delayed]="a.status === 'delayed'" [class.customs]="a.status === 'customs_hold'">
+          <div class="alert-icon">
+            @if (a.status === 'delayed') {
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            } @else {
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            }
+          </div>
+          <div class="alert-body">
+            <div class="alert-title">{{ a.trackingId }}</div>
+            <div class="alert-desc text-xs">{{ a.customerName }} · {{ a.origin }} → {{ a.destination }}</div>
+            <app-status-badge [status]="a.status" />
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>
+
+<!-- Recent Shipments -->
+<div class="card">
+  <div class="section-header">
+    <h2 class="heading-sm">Recent Shipments</h2>
+    <a routerLink="/shipments" class="btn btn-ghost btn-sm" id="view-all-shipments-btn">View All →</a>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data-table" role="table" aria-label="Recent shipments">
+      <thead>
+        <tr>
+          <th>Tracking ID</th>
+          <th>Customer</th>
+          <th class="hide-mobile">Route</th>
+          <th>Status</th>
+          <th class="hide-mobile">ETA</th>
+          <th class="hide-mobile">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (isLoading()) {
+          @for (_ of [1,2,3,4,5]; track $index) {
+            <tr>
+              <td colspan="6"><div class="skeleton" style="height: 20px; width: 80%"></div></td>
+            </tr>
+          }
+        } @else {
+          @for (s of recentShipments(); track s.id) {
+            <tr>
+              <td>
+                <a [routerLink]="['/shipments', s.id]" class="tracking-link">{{ s.trackingId }}</a>
+              </td>
+              <td>{{ s.customerName }}</td>
+              <td class="hide-mobile route-cell">
+                <span>{{ s.origin }}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span>{{ s.destination }}</span>
+              </td>
+              <td><app-status-badge [status]="s.status" /></td>
+              <td class="hide-mobile text-sm">{{ s.estimatedDelivery }}</td>
+              <td class="hide-mobile text-sm fw-600">${{ (s.value / 1000).toFixed(0) }}K</td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="quick-actions">
+  <h2 class="heading-sm">Quick Actions</h2>
+  <div class="actions-grid">
+    <a routerLink="/shipments" class="action-card" id="qa-shipments">
+      <div class="action-icon" style="background: rgba(37,99,235,0.1); color: var(--info)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <span>Create Shipment</span>
+    </a>
+    <a routerLink="/fleet" class="action-card" id="qa-fleet">
+      <div class="action-icon" style="background: rgba(22,163,74,0.1); color: var(--success)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
+      </div>
+      <span>Assign Driver</span>
+    </a>
+    <a routerLink="/customers" class="action-card" id="qa-customers">
+      <div class="action-icon" style="background: rgba(216,95,54,0.1); color: var(--accent)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      </div>
+      <span>Add Customer</span>
+    </a>
+    <a routerLink="/reports" class="action-card" id="qa-reports">
+      <div class="action-icon" style="background: rgba(202,138,4,0.1); color: var(--warning)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <span>Generate Report</span>
+    </a>
+  </div>
+</div>
