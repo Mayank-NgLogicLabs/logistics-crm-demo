@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "logistics-cms-v2",
+    "public": "dist/logistics-crm",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
