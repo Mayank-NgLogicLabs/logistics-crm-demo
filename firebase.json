@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "logistics-cms-v2",
+    "site": "logistics-crm-v1",
     "public": "dist/logistics-crm",
     "ignore": [
       "firebase.json",
