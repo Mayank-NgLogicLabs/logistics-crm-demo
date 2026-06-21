@@ -7,11 +7,10 @@ import { selectUser } from '../../store/auth/auth.selectors';
 import { AuthActions } from '../../store/auth/auth.actions';
 
 @Component({
-  selector: 'app-topbar',
-  standalone: true,
-  imports: [RouterLink],
-  templateUrl: './topbar.component.html',
-  styleUrl: './topbar.component.scss'
+    selector: 'app-topbar',
+    imports: [RouterLink],
+    templateUrl: './topbar.component.html',
+    styleUrl: './topbar.component.scss'
 })
 export class TopbarComponent {
   @Input() sidebarCollapsed = false;

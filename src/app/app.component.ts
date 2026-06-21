@@ -5,11 +5,10 @@ import { AuthActions } from './store/auth/auth.actions';
 import { AuthService } from './core/services/auth.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styles: [`:host { display: block; min-height: 100vh; }`]
+    selector: 'app-root',
+    imports: [RouterOutlet],
+    templateUrl: './app.component.html',
+    styles: [`:host { display: block; min-height: 100vh; }`]
 })
 export class AppComponent implements OnInit {
   private store = inject(Store);

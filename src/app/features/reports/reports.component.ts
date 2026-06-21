@@ -10,11 +10,10 @@ import { FleetActions } from '../../store/fleet/fleet.actions';
 import { DecimalPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-reports',
-  standalone: true,
-  imports: [DecimalPipe],
-  templateUrl: './reports.component.html',
-  styleUrl: './reports.component.scss'
+    selector: 'app-reports',
+    imports: [DecimalPipe],
+    templateUrl: './reports.component.html',
+    styleUrl: './reports.component.scss'
 })
 export class ReportsComponent implements OnInit {
   private store = inject(Store);

@@ -6,11 +6,10 @@ import { TopbarComponent } from '../topbar/topbar.component';
 import { BottomNavComponent } from '../bottom-nav/bottom-nav.component';
 
 @Component({
-  selector: 'app-shell',
-  standalone: true,
-  imports: [RouterOutlet, SidebarComponent, TopbarComponent],
-  templateUrl: './shell.component.html',
-  styleUrl: './shell.component.scss'
+    selector: 'app-shell',
+    imports: [RouterOutlet, SidebarComponent, TopbarComponent],
+    templateUrl: './shell.component.html',
+    styleUrl: './shell.component.scss'
 })
 export class ShellComponent implements OnInit {
   sidebarCollapsed = signal(false);

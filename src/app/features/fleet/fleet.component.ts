@@ -10,11 +10,10 @@ import { selectVehicles, selectIsLoading, selectFleetStats } from '../../store/f
 import { Vehicle } from '../../core/models/fleet.model';
 
 @Component({
-  selector: 'app-fleet',
-  standalone: true,
-  imports: [StatusBadgeComponent, TitleCasePipe, ReactiveFormsModule],
-  templateUrl: './fleet.component.html',
-  styleUrl: './fleet.component.scss'
+    selector: 'app-fleet',
+    imports: [StatusBadgeComponent, TitleCasePipe, ReactiveFormsModule],
+    templateUrl: './fleet.component.html',
+    styleUrl: './fleet.component.scss'
 })
 export class FleetComponent implements OnInit {
   private store = inject(Store);

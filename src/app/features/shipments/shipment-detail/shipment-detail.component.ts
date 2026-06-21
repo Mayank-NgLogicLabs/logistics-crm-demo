@@ -8,11 +8,10 @@ import { selectSelectedShipment } from '../../../store/shipments/shipments.selec
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-shipment-detail',
-  standalone: true,
-  imports: [RouterLink, StatusBadgeComponent],
-  templateUrl: './shipment-detail.component.html',
-  styleUrl: './shipment-detail.component.scss'
+    selector: 'app-shipment-detail',
+    imports: [RouterLink, StatusBadgeComponent],
+    templateUrl: './shipment-detail.component.html',
+    styleUrl: './shipment-detail.component.scss'
 })
 export class ShipmentDetailComponent implements OnInit {
   private store = inject(Store);

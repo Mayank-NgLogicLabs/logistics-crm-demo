@@ -11,11 +11,10 @@ export interface MetricCardData {
 }
 
 @Component({
-  selector: 'app-metric-card',
-  standalone: true,
-  imports: [DecimalPipe],
-  templateUrl: './metric-card.component.html',
-  styleUrl: './metric-card.component.scss'
+    selector: 'app-metric-card',
+    imports: [DecimalPipe],
+    templateUrl: './metric-card.component.html',
+    styleUrl: './metric-card.component.scss'
 })
 export class MetricCardComponent {
   @Input({ required: true }) data!: MetricCardData;

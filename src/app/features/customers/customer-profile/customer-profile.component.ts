@@ -10,11 +10,10 @@ import { selectShipments } from '../../../store/shipments/shipments.selectors';
 import { DecimalPipe, CurrencyPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-customer-profile',
-  standalone: true,
-  imports: [RouterLink, StatusBadgeComponent, DecimalPipe, CurrencyPipe],
-  templateUrl: './customer-profile.component.html',
-  styleUrl: './customer-profile.component.scss'
+    selector: 'app-customer-profile',
+    imports: [RouterLink, StatusBadgeComponent, DecimalPipe, CurrencyPipe],
+    templateUrl: './customer-profile.component.html',
+    styleUrl: './customer-profile.component.scss'
 })
 export class CustomerProfileComponent implements OnInit {
   private store = inject(Store);

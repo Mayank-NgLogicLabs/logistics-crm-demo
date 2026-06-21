@@ -20,12 +20,11 @@ const STATUS_TABS: { label: string; value: ShipmentStatus | 'all' }[] = [
 ];
 
 @Component({
-  selector: 'app-shipments-list',
-  standalone: true,
-  imports: [RouterLink, StatusBadgeComponent, ReactiveFormsModule],
-  templateUrl: './shipments-list.component.html',
-  styleUrl: './shipments-list.component.scss',
-  host: { style: 'display:block' }
+    selector: 'app-shipments-list',
+    imports: [RouterLink, StatusBadgeComponent, ReactiveFormsModule],
+    templateUrl: './shipments-list.component.html',
+    styleUrl: './shipments-list.component.scss',
+    host: { style: 'display:block' }
 })
 export class ShipmentsListComponent implements OnInit {
   private store = inject(Store);

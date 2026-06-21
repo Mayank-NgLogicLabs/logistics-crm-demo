@@ -11,12 +11,11 @@ import { FleetActions } from '../../store/fleet/fleet.actions';
 import { DecimalPipe, CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [RouterLink, MetricCardComponent, StatusBadgeComponent, DecimalPipe, CurrencyPipe, DatePipe],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
-  host: { style: 'display:block' }
+    selector: 'app-dashboard',
+    imports: [RouterLink, MetricCardComponent, StatusBadgeComponent, DecimalPipe, CurrencyPipe, DatePipe],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss',
+    host: { style: 'display:block' }
 })
 export class DashboardComponent implements OnInit {
   private store = inject(Store);

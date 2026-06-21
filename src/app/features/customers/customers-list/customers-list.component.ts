@@ -8,12 +8,11 @@ import { CustomersActions } from '../../../store/customers/customers.actions';
 import { selectFilteredCustomers, selectIsLoading } from '../../../store/customers/customers.selectors';
 
 @Component({
-  selector: 'app-customers-list',
-  standalone: true,
-  imports: [RouterLink, StatusBadgeComponent, ReactiveFormsModule],
-  templateUrl: './customers-list.component.html',
-  styleUrl: './customers-list.component.scss',
-  host: { style: 'display:block' }
+    selector: 'app-customers-list',
+    imports: [RouterLink, StatusBadgeComponent, ReactiveFormsModule],
+    templateUrl: './customers-list.component.html',
+    styleUrl: './customers-list.component.scss',
+    host: { style: 'display:block' }
 })
 export class CustomersListComponent implements OnInit {
   private store = inject(Store);
