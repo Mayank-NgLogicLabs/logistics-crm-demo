@@ -7,10 +7,9 @@ import { selectUser, selectIsAuthenticated } from '../../store/auth/auth.selecto
 import { selectUnreadCount, selectNotifications } from '../../store/app/app.selectors';
 
 @Component({
-  selector: 'app-layout',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  template: `
+    selector: 'app-layout',
+    imports: [CommonModule, RouterModule],
+    template: `
     <div class="app-layout" [class.sidebar-collapsed]="sidebarCollapsed()">
       <!-- Sidebar -->
       <aside class="sidebar">
@@ -253,7 +252,7 @@ import { selectUnreadCount, selectNotifications } from '../../store/app/app.sele
       </div>
     </div>
   `,
-  styleUrl: './layout.component.scss'
+    styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
   private store = inject(Store);

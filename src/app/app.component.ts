@@ -5,11 +5,10 @@ import * as AuthActions from './store/auth/auth.actions';
 import { selectIsAuthenticated } from './store/auth/auth.selectors';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  template: '<router-outlet />',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [RouterOutlet],
+    template: '<router-outlet />',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   private store = inject(Store);

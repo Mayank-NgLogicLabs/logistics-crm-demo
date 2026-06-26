@@ -11,10 +11,9 @@ import {
 import { Order, OrderStatus } from '../../core/models';
 
 @Component({
-  selector: 'app-orders',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
-  template: `
+    selector: 'app-orders',
+    imports: [CommonModule, RouterModule, FormsModule],
+    template: `
     <div class="orders-page">
       <header class="page-header">
         <div class="header-content">
@@ -138,7 +137,7 @@ import { Order, OrderStatus } from '../../core/models';
       </div>
     </div>
   `,
-  styleUrl: './orders.component.scss'
+    styleUrl: './orders.component.scss'
 })
 export class OrdersComponent implements OnInit {
   private store = inject(Store);

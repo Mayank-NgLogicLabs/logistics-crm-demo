@@ -11,10 +11,9 @@ import {
 import { Shipment, ShipmentStatus } from '../../core/models';
 
 @Component({
-  selector: 'app-shipments',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
-  template: `
+    selector: 'app-shipments',
+    imports: [CommonModule, RouterModule, FormsModule],
+    template: `
     <div class="shipments-page">
       <header class="page-header">
         <div class="header-content">
@@ -168,7 +167,7 @@ import { Shipment, ShipmentStatus } from '../../core/models';
       }
     </div>
   `,
-  styleUrl: './shipments.component.scss'
+    styleUrl: './shipments.component.scss'
 })
 export class ShipmentsComponent implements OnInit {
   private store = inject(Store);

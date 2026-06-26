@@ -13,10 +13,9 @@ import {
 import { selectUser } from '../../store/auth/auth.selectors';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  template: `
+    selector: 'app-dashboard',
+    imports: [CommonModule, RouterModule],
+    template: `
     <div class="dashboard">
       <header class="dashboard-header">
         <div class="welcome-section">
@@ -244,7 +243,7 @@ import { selectUser } from '../../store/auth/auth.selectors';
       }
     </div>
   `,
-  styleUrl: './dashboard.component.scss'
+    styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
   private store = inject(Store);

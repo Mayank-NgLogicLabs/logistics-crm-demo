@@ -11,10 +11,9 @@ import {
 import { Customer, CustomerStatus } from '../../core/models';
 
 @Component({
-  selector: 'app-customers',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
-  template: `
+    selector: 'app-customers',
+    imports: [CommonModule, RouterModule, FormsModule],
+    template: `
     <div class="customers-page">
       <header class="page-header">
         <div class="header-content">
@@ -190,7 +189,7 @@ import { Customer, CustomerStatus } from '../../core/models';
       }
     </div>
   `,
-  styleUrl: './customers.component.scss'
+    styleUrl: './customers.component.scss'
 })
 export class CustomersComponent implements OnInit {
   private store = inject(Store);

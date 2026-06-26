@@ -7,10 +7,9 @@ import * as AuthActions from '../../store/auth/auth.actions';
 import { selectAuthLoading, selectAuthError } from '../../store/auth/auth.selectors';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  template: `
+    selector: 'app-login',
+    imports: [CommonModule, ReactiveFormsModule],
+    template: `
     <div class="login-container">
       <div class="login-card">
         <div class="login-header">
@@ -116,7 +115,7 @@ import { selectAuthLoading, selectAuthError } from '../../store/auth/auth.select
       </div>
     </div>
   `,
-  styleUrl: './login.component.scss'
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
