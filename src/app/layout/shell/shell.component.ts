@@ -14,7 +14,7 @@ import { BottomNavComponent } from '../bottom-nav/bottom-nav.component';
 export class ShellComponent implements OnInit {
   sidebarCollapsed = signal(false);
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   onResize(): void {
     if (window.innerWidth < 1024) {
       this.sidebarCollapsed.set(true);
